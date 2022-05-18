@@ -1,31 +1,35 @@
 # Rule Engine
 
 ## Philosophy
-Rule Engine is created to provide dynamic rule configuration as per the users requirement.
-User can control what conditions to use, what result to be sent if conditions are met.
-Rules can have priorities assigned to it.
+* Rule Engine is created to provide dynamic rule configuration as per the users requirement.  
+* User can control what conditions to use, what result to be sent if conditions are met.  
+* Rules can have priorities assigned to it.  
 
 ## Features
-Define multiple rules.
-Supports complex expressions.
-Priority based evaluation of rules.
-Evaluates Relation and Mathematical Operators ( '>','<','>=','<=','==','!=')
-Evaluates Logical Operators (AND and OR)
-Evaluates Array Based Operators ('~=' contains)
+* Define multiple rules.
+* Supports complex expressions.
+* Priority based evaluation of rules.
+* Evaluates Relation and Mathematical Operators ( '>','<','>=','<=','==','!=')
+* Evaluates Logical Operators (AND and OR)
+* Evaluates Array Based Operators ('~=' one of)
 
 ## Usage
 ```
 try {
-    let result = evaluateRules(variables,ruleEngineObj);
+    let result = EvaluateRules(variables,ruleEngineObj);
 }
 catch (error) {
     console.log(error.message);
 }
 ```
 
-## Function Parameters
+## Function Parameters for EvaluateRules
 
-### Rule Engine Object
+### Variables (variables)
+- Variable is JSON object of variables against which expression needs to be evaluated.
+- `{ var1:1, var2:'test'}`
+
+### Rule Engine Object (ruleEngineObj)
 
 ```
 {
@@ -62,9 +66,6 @@ catch (error) {
 - result : Result returned if rule is passed (Mandatory) (Any Object Ex: String, JSON, Array, Integer)
 - priority : Priority based on which rules will be evaluated. If not specified the default priority will be set to 1. Highest priority (Optional)(Number)
 
-## Variables
-- Variable is JSON object of variables against which expression needs to be evaluated.
-- Eg : { var1:1, var2:'test'}
 
 ## Notes
 - `var2 == test` compares variable 'var2' value with string 'test'. (No need to use quotes for string inside expression)
