@@ -62,10 +62,10 @@ catch (error) {
 }
 ```
 
-- **name** : Name of the rule (Optional)(String)
-- **expression** : Expression to be evaluated (Mandatory)(String)
-- **result** : Result returned if rule is passed (Mandatory) (Any Object Ex: String, JSON, Array, Integer)
-- **priority** : Priority based on which rules will be evaluated. If not specified the default priority will be set to 1. Highest priority (Optional)(Number)
+- `name` : Name of the rule (Optional)(String)
+- `expression` : Expression to be evaluated (Mandatory)(String)
+- `result` : Result returned if rule is passed (Mandatory) (Any Object Ex: String, JSON, Array, Integer)
+- `priority` : Priority based on which rules will be evaluated. If not specified the default priority will be set to 1. Highest priority (Optional)(Number)
 
 
 ## Notes
