@@ -1,0 +1,23 @@
+{
+  "type":"module",
+  "name": "ruleengine",
+  "version": "1.0.0",
+  "description": "Rule engine to evaluate rules based on expression and return a result",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikunjShah/projects.git"
+  },
+  "keywords": [
+    "rule engine"
+  ],
+  "author": "Nikunj Shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikunjShah/projects/RuleEngine/issues"
+  },
+  "homepage": "https://github.com/NikunjShah/projects/RuleEngine/#readme"
+}
