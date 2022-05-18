@@ -13,9 +13,18 @@ Evaluates Relation and Mathematical Operators ( '>','<','>=','<=','==','!=')
 Evaluates Logical Operators (AND and OR)
 Evaluates Array Based Operators ('~=' contains)
 
-## Examples
+## Usage
 
-### Rules Object
+`try {
+    let result = evaluateRules(variables,ruleEngineObj);
+}
+catch (error) {
+    console.log(error.message);
+}`
+
+## Function Parameters
+
+### Rule Engine Object
 
 `{
         "rules" : [{
@@ -50,3 +59,10 @@ Evaluates Array Based Operators ('~=' contains)
 - result : Result returned if rule is passed (Mandatory) (Any Object Ex: String, JSON, Array, Integer)
 - priority : Priority based on which rules will be evaluated. If not specified the default priority will be set to 1. Highest priority (Optional)(Number)
 
+## Variables
+- Variable is JSON object of variables against which expression needs to be evaluated.
+- Eg : { var1:1, var2:'test'}
+
+## Notes
+- var2 == test compares variable 'var2' value with string 'test'. (No need to use quotes for string inside expression)
+- var2 ~= [\"test\",\"test2\"]" checks variable 'var2' value is one of 'test' and 'test2' (test and test2 are elements of string array)
