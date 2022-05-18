@@ -17,6 +17,7 @@
 ```
 try {
     let result = EvaluateRules(variables,ruleEngineObj);
+    console.log(result);
 }
 catch (error) {
     console.log(error.message);
