@@ -71,3 +71,4 @@ catch (error) {
 ## Notes
 - `var2 == test` compares variable 'var2' value with string 'test'. (No need to use quotes for string inside expression)
 - `var2 ~= [\"test\",\"test2\"]" ` checks variable 'var2' value is one of 'test' and 'test2' (test and test2 are elements of string array)
+- If more than one rule expression conditions are satisfied, rule with no priority will take precedence. In case of 2 rule expression conditions with same priority are satisfied, than the first rule added will take precedence.
