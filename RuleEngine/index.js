@@ -1,4 +1,4 @@
-import { evaluateRules } from "./rule-engine.js";
+import { EvaluateRules } from "./rule-engine.js";
 
 const variables = {var1:1,var2:'test'}
 const ruleEngineObj = {
@@ -11,11 +11,18 @@ const ruleEngineObj = {
                 {
                     name:"rule2",
                     expression:"(var1>=1 AND var2==test2) OR var2==test",
-                    result:"rule2 passed",
+                    result:{'test':'test2'},
                     priority:1
                 }
             ]
 }
 
-console.log(evaluateRules(variables,ruleEngineObj));
 
+
+try {
+    let result = EvaluateRules(variables,ruleEngineObj);
+    console.log(result);
+}
+catch (error) {
+    console.log(error.message);
+}

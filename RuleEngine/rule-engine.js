@@ -1,6 +1,6 @@
 import { constants } from "./constants.js";
 
-const validateExpression = (expression, result = true) => {
+const ValidateExpression = (expression, result = true) => {
     if (result == false) return false;
     const logicalOperators=constants.LOGICAL_OPERATORS.join('|');
     const regex = new RegExp('(?!\\(.*)(' + logicalOperators + ')(?![^(]*?\\))', 'g');
@@ -15,7 +15,7 @@ const validateExpression = (expression, result = true) => {
                 break;
             }
             if (exp[0] == '(' && exp[len - 1] == ')') {
-                result = validateExpression(exp.slice(1, -1), result)
+                result = ValidateExpression(exp.slice(1, -1), result)
             } else {
                 if (logicalExpr.length == 1) {
                     let mathematicalExpr = exp.split(new RegExp(constants.MATHEMATICAL_OPERATORS.join('|'), 'g'));
@@ -33,14 +33,14 @@ const validateExpression = (expression, result = true) => {
                     }                   
                     break;
                 }
-                result = validateExpression(exp, result);
+                result = ValidateExpression(exp, result);
             }
         }
     }
     return result;
 }
 
-const validateRules = (ruleEngObj) => {
+const ValidateRules = (ruleEngObj) => {
     const rules = ruleEngObj.rules;
     if (!(rules instanceof Array)) throw new Error(`The rules property is not an array`);
     rules.forEach(function (rule, key) {
@@ -56,12 +56,12 @@ const validateRules = (ruleEngObj) => {
         if (priority && isNaN(priority)) {
             throw new Error(`The priority for rule ${rule?.name} is not a number`);
         }
-        let isValid = validateExpression(expression);
+        let isValid = ValidateExpression(expression);
         if (!isValid) throw new Error(`The expression for rule ${rule?.name} is not in correct format`);
     })
 }
 
-const validateRulesObj = (ruleEngObj) => {
+const ValidateRulesObj = (ruleEngObj) => {
 
     //Check Object in ValidFormat for  Rules and Variables.
 
@@ -71,14 +71,14 @@ const validateRulesObj = (ruleEngObj) => {
 
     //Validate rules in ruleEngObj
     try {
-        validateRules(ruleEngObj);
+        ValidateRules(ruleEngObj);
     } catch (error) {
         throw error;
     }
     console.log('Success');
 }
 
-const evaluateSubExpression = (variables, subExpr) => {
+const EvaluateSubExpression = (variables, subExpr) => {
     let result = false;
     const relationalOperators=constants.RELATIONAL_OPERATORS.join('|');
     const regex = new RegExp('(?!\\(.*)(' + relationalOperators + ')(?![^(]*?\\))', 'g');
@@ -126,7 +126,7 @@ const evaluateSubExpression = (variables, subExpr) => {
     return result;
 }
 
-const evaluateExpression = (variables, expression) => {
+const EvaluateExpression = (variables, expression) => {
     const logicalOperators=constants.LOGICAL_OPERATORS.join('|');
     const regex = new RegExp('(?!\\(.*)(' + logicalOperators + ')(?![^(]*?\\))', 'g');
     let exprArr = expression.split(regex);
@@ -134,9 +134,9 @@ const evaluateExpression = (variables, expression) => {
     let result = false;
     exprArr.forEach(expr => {
         expr = expr?.trim();
-        if (expr[0] == '(') evalArr.push(evaluateExpression(variables, expr.slice(1, -1)));
+        if (expr[0] == '(') evalArr.push(EvaluateExpression(variables, expr.slice(1, -1)));
         else if (constants.LOGICAL_OPERATORS.includes(expr)) evalArr.push(expr);
-        else evalArr.push(evaluateSubExpression(variables, expr))
+        else evalArr.push(EvaluateSubExpression(variables, expr))
     });
     if(evalArr.length==1) return evalArr[0];
     for (let i = 0; i < evalArr.length - 2; i += 2) {
@@ -158,10 +158,10 @@ const evaluateExpression = (variables, expression) => {
     return result;
 }
 
-export const evaluateRules = (variables, ruleEngObj) => {
+export const EvaluateRules = (variables, ruleEngObj) => {
     let result;
     try {
-        validateRulesObj(ruleEngObj);
+        ValidateRulesObj(ruleEngObj);
     }
     catch (error) {
         throw error;
@@ -173,7 +173,7 @@ export const evaluateRules = (variables, ruleEngObj) => {
     });
     for (var key in rules) {
         const expression = rules[key].expression
-        let exprEvalResult = evaluateExpression(variables, expression);
+        let exprEvalResult = EvaluateExpression(variables, expression);
         if (exprEvalResult) {
             result = rules[key].result;
             break;
