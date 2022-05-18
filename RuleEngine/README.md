@@ -14,19 +14,21 @@ Evaluates Logical Operators (AND and OR)
 Evaluates Array Based Operators ('~=' contains)
 
 ## Usage
-
-`try {
+```
+try {
     let result = evaluateRules(variables,ruleEngineObj);
 }
 catch (error) {
     console.log(error.message);
-}`
+}
+```
 
 ## Function Parameters
 
 ### Rule Engine Object
 
-`{
+```
+{
         "rules" : [{
                     name:"rule1",
                     expression:"var1>=1 AND var2 == test",
@@ -52,7 +54,8 @@ catch (error) {
                     priority:1
                 }
             ]
-}`
+}
+```
 
 - name : Name of the rule (Optional)(String)
 - expression : Expression to be evaluated (Mandatory)(String)
@@ -64,5 +67,5 @@ catch (error) {
 - Eg : { var1:1, var2:'test'}
 
 ## Notes
-- var2 == test compares variable 'var2' value with string 'test'. (No need to use quotes for string inside expression)
-- var2 ~= [\"test\",\"test2\"]" checks variable 'var2' value is one of 'test' and 'test2' (test and test2 are elements of string array)
+- `var2 == test` compares variable 'var2' value with string 'test'. (No need to use quotes for string inside expression)
+- `var2 ~= [\"test\",\"test2\"]" ` checks variable 'var2' value is one of 'test' and 'test2' (test and test2 are elements of string array)
